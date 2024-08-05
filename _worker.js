@@ -1,19 +1,10 @@
-addEventListener(
-  "fetch", event => {
-      let url = new URL(event.request.url);
-      url.hostname = "ns0.digikala.pl";
-      url.pathname = "/"
-      url.protocol = "https";
-      let headers = new Headers(event.request.headers);
-      headers.set('Upgrade-Insecure-Requests', '1');
-
-      let request = new Request(url, {
-        method: event.request.method,
-        headers: headers,
-        body: event.request.body
-      });
-      event.respondWith(
-         fetch(request)
-      )
-  }
-);
+export default {
+  async fetch(request, env) {
+    let url = new URL(request.url);
+    if (url.pathname.startsWith('/')) {
+      url.hostname = 'ns0.digikala.pl'
+      let new_request = new Request(url, request);
+      return fetch(new_request);
+    }
+    return env.ASSETS.fetch(request);
+  },};
