@@ -1,7 +1,7 @@
 addEventListener(
   "fetch", event => {
       let url = new URL(event.request.url);
-      url.hostname = "ns0.moghavemat.site";
+      url.hostname = "ns0.digikala.pl";
       url.pathname = "/"
       url.protocol = "https";
       let headers = new Headers(event.request.headers);
