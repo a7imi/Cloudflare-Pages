@@ -6,8 +6,6 @@ addEventListener(
       url.protocol = "https";
       let headers = new Headers(event.request.headers);
       headers.set('Upgrade-Insecure-Requests', '1');
-      headers.set('Host', 'ns0.moghavemat.site');
-      headers.set('SNI', 'ns0.moghavemat.site');
 
       let request = new Request(url, {
         method: event.request.method,
